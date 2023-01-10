@@ -1,0 +1,101 @@
+<%- include("header") -%>
+
+<!-- Showing list title -->
+  <div class="content">
+    <div class="box" id="heading">
+      <h1> <%= listTitle %> </h1>
+    </div>
+
+
+<!-- Showing all lists -->
+    <div class="form">
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Lists
+        </button>
+        <ul class="dropdown-menu">
+          <% array.forEach(function(item) {%>
+              <li><a class="dropdown-item" href="/<%= item.listName %>"> <%= item.listName %> </a></li>
+          <% }) %>
+
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="/">Default List</a></li>
+        </ul>
+      </div>
+
+<!-- Making new lists -->
+      <div class="list drop">
+        <form action="/list" method="post">
+          <input type="text" name="newListName" placeholder="New List Name" autocomplete="off">
+          <button class="btn btn-primary btn-md" type="submit" name="newList">Create</button>
+        </form>
+      </div>
+    </div>
+
+
+<!-- Showing each list item -->
+    <div class="box">
+      <% newListItems.forEach(function(item) {%>
+          <form class="form-group" action="/delete" method="post">
+            <div class="item">
+              <input type="checkbox" onChange="this.form.submit()" name="box" value="<%=  item._id  %>">
+              <input type="hidden" name="list_name" value="<%= listTitle %>">
+              <p><%=  item.itemName  %></p>
+            </div>
+          </form>
+      <% }) %>
+
+<!-- Adding new list items -->
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button class="button" type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+    </div>
+  </div>
+
+
+<%- include("footer") -%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
